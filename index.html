@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单补单系统 - XLX-LONGQIANG</title>
+    <style>
+        /* 现代渐变背景 */
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', system-ui, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 磨砂玻璃效果容器 */
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        h1:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #007bff;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* 输入框组 */
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        /* 现代输入框样式 */
+        input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        /* 3D按钮设计 */
+        button {
+            background: linear-gradient(135deg, #007bff 0%, #0062cc 100%);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* 按钮光效 */
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 25%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 75%
+            );
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+                margin: 15px;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>预受理单/客户订单编号</h1>
+        <div class="input-group">
+            <input 
+                type="text" 
+                id="urlInput" 
+                placeholder="请输入订单号（示例：XLX-LONGQIANG）"
+                autocomplete="off"
+                spellcheck="false"
+            >
+            <button onclick="openLink()">补底单</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript代码保持不变
+        const prefix = "http://202.103.124.84:7201/portal/n/h5/index.html#/rePhoto?orderId=";
+        
+        function openLink() {
+            const input = document.getElementById("urlInput").value;
+            const fullUrl = prefix + input;
+            window.open(fullUrl, "_blank");
+        }
+
+        document.getElementById("urlInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                openLink();
+            }
+        });
+    </script>
+</body>
+</html>
