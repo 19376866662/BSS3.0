@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 移动端适配 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预受理单号/客户订单编号</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .container {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .input-group {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>预受理单号/客户订单编号</h1>
+        <div class="input-group">
+            <input 
+                type="text" 
+                id="urlInput" 
+                placeholder="输入订单号 (XLX-LONGQIANG)"
+                autocomplete="off"
+            >
+            <button onclick="handleOpenLink()">补底单</button>
+        </div>
+    </div>
+
+    <script>
+        // 设置固定的网址前缀
+        const prefix = "http://202.103.124.84:7201/portal/n/h5/index.html#/rePhoto?orderId=";
+
+        function openLink() {
+            // 获取用户输入的内容
+            const input = document.getElementById("urlInput").value;
+            
+            // 拼接完整的URL
+            const fullUrl = prefix + input;
+            
+            // 打开链接
+            window.open(fullUrl, "_blank");
+        }
+
+        // 监听回车键
+        document.getElementById("urlInput").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                openLink();
+            }
+        });
+    </script>
+</body>
+</html>
